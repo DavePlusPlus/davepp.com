@@ -1,0 +1,71 @@
+{% extends data.outerLayout %}
+{% block title %}
+{% if data.piece %}{{ data.piece.title }}
+{% elseif data.page %}{{ data.page.title }}
+{% else %}{{ apos.log('You forgot to override the title block.') }}{% endif %} | {{data.global.appName}}{% endblock %}
+{% block extraHead %}
+<meta name="description" content="{{ data.page.metaDescription | truncate(300, true, "..") | safe }}" />
+<meta name="tags" content="{{ data.page.metaTags }}" />
+<meta property="fb:app_id" content="988279464677942" />
+{% include "apostrophe-open-graph:view.html" %}
+<meta property="article:author" content="https://www.facebook.com/Dave.Hrrr" />
+<meta property="article:publisher" content="https://www.facebook.com/daveppofficial" />
+{% endblock %}
+{% block header %}
+<div class="three-column-header">
+<div class="logo">
+<a href="{{ data.home._url }}">{{data.global.appName}}</a>
+</div>
+<form class="search" method="GET" action="/search">
+<input class="searchBox" type="search" value="{{ data.query.q | e }}" name="q" placeholder="words, tags..." autocomplete="off" />
+<input class="searchButton" type="submit" value="Search" />
+</form>
+{% block mainMenu %}
+<nav class="main-menu">
+<ul class="pages">
+{% for tab in data.home._children %}
+<li class="{% if data.page and (apos.pages.isAncestorOf(tab, data.page) or tab._id == data.page._id) %}current{% else %}not-current{% endif %}">
+<a href="{{ tab._url }}">{{ tab.title }}</a>
+</li>
+{% endfor %}
+</ul>
+</nav>
+{% endblock %}
+</div>
+{% if data.page._ancestors | length %}
+<ul class="breadcrumbs">
+{% for ancestor in data.page._ancestors %}
+<li class="breadcrumb"><a href="{{ ancestor._url }}">{{ ancestor.title }}</a></li>
+{% endfor %}
+{% if data.piece %}
+<li class="breadcrumb"><a href="{{ data.page._url }}">{{ data.page.title }}</a></li>
+<li class="breadcrumb"><p>{{ data.piece.title }}</p></li>{% else %}
+<li class="breadcrumb"><p>{{ data.page.title }}</p></li>{% endif %}
+</ul>
+{% endif %}
+{% endblock %}
+{% block articleClass %}{% endblock %}
+{% block main %}{% endblock %}
+{% block aside %}{% endblock %}
+{% block pagination %}{% endblock %}
+{% block section %}{% endblock %}
+{% block footer %}
+{{ apos.area(data.global, 'footer', {
+      widgets: {
+        'two-column': {},
+		'separator': {},
+        'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'Heading', element: 'h3' },
+            { name: 'Subheading', element: 'h4' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+      }
+}) }}
+{% endblock %}
