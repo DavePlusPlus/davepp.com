@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block bodyClass %}page{% endblock %}
+{% block articleClass %}default{% endblock %}
+{% block main %}
+<div class="content">
+{{ apos.area(data.page, 'page', {
+    widgets: {
+		'two-column': {},
+		'separator': {},
+        'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'Heading', element: 'h3' },
+            { name: 'Subheading', element: 'h4' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+    }
+}) }}
+</div>
+{% endblock %}

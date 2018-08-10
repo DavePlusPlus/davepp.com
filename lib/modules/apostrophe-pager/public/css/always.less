@@ -1,0 +1,30 @@
+div.pagination {
+	display: block;
+	width: 100%;
+	flex: 0 1 100%;
+	div.pager {
+		display: inline-block;
+		padding: 0.5em;
+		border-radius: 3px;
+		box-shadow: inset 0 0 14px 0 rgba(219,219,219,.7);
+		background-color: #f6f6f6;
+		font-size: 0.9em;
+	}
+	span.number {
+		a {
+			padding: 0 0.3em;
+			color: @apos-black;
+		}
+		&.active {
+			color: @apos-mid;
+			padding: 0 0.3em;
+		}
+		&.last:after {}
+	}
+	span.first, span.last {
+		padding: 0 0.3em;
+		a {
+			padding: 0;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block bodyClass %}page{% endblock %}
+{% block articleClass %}search{% endblock %}
+{% block title %}{{ data.page.title }}{% endblock %}
+{% block main %}
+<div class="content">
+  <form data-apos-search-page-form class="search" method="GET" action="{{ data.url | e }}">
+    {% if data.filters %}
+      <h4 class="searchTitle">{{ __('Filter Results By Type') }}</h4>
+      <ul class="filters">
+        {% for filter in data.filters %}
+          <li class="filter">
+            <input data-apos-search-filter type="checkbox" name="{{ filter.name | e }}"
+              {% if filter.value %}checked{% endif %}
+              value="1"
+            />{{ filter.label | e }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <label for="searchBox">{{ __('New Search') }}</label>
+    <input data-apos-search-field class="searchBox" id="searchBox" type="search" value="{{ data.query.q | e }}" name="q" placeholder="words, tags..." autocomplete="off" />
+    <input class="searchButton" type="submit" value="Search" />
+  </form>
+{% if data.query.q | length %}<h5 class="searchQuery">Search Results for: {{ data.query.q | e }}</h5>{% endif %}
+{% for doc in data.docs %}
+{% if doc._url %}<a class="preview" href="{{ doc._url }}">
+<h5 class="title">{{ doc.title }}</h5>
+{% if doc.publishedAt | length %}<time datetime="{{ doc.publishedAt }}" class="date">Published on {{ doc.publishedAt | date('MMMM Do, YYYY') }}</time>{% endif %}
+</a>{% endif %}
+{% else %}
+<p>No results. Sorry :C</p>
+{% endfor %}
+</div>
+{% endblock %}
+{% block pagination %}
+{% include "pager.html" %}
+{% endblock %}

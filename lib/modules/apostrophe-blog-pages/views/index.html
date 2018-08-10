@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block bodyClass %}blog{% endblock %}
+{% block articleClass %}index{% endblock %}
+{% block main %}
+{%- macro here(changes) -%}
+{{ data.page._url | build({
+year: data.query.year
+}, changes) }}
+{%- endmacro -%}
+<div class="meta">
+<h2 class="title">All {{ data.page.title }}</h2>
+
+<ul class="years">
+<li><a href="{{ here({ year: null }) }}">All years:</a></li>
+{% for year in data.piecesFilters.year %}
+<li class="{% if data.query.year == year.value %}current{% else %}not-current{% endif %}"><a href="{{ here({ year: year.value }) }}">{{ year.label }}</a></li>
+{% endfor %}
+</ul>
+
+<ul class="tags">
+<li><a href="{{ here({ tags: null }) }}">All tags:</a></li>
+{% for tag in data.piecesFilters.tags %}
+<li class="{% if data.query.tags == tag.value %}current{% else %}not-current{% endif %}"><a href="{{ here({ tags: tag.value }) }}">{{ tag.label }}</a></li>
+{% endfor %}
+</ul>
+
+</div>
+<div class="content">
+{% for piece in data.pieces %}
+{% if piece._url %}<a class="preview" href="{{ piece._url }}">
+<h5 class="title">{{ piece.title }}</h5>
+{% if piece.publishedAt | length %}<time datetime="{{ piece.publishedAt }}" class="date">Published on {{ piece.publishedAt | date('MMMM Do, YYYY') }}</time>{% endif %}
+</a>{% endif %}
+{% endfor %}
+</div>
+{% endblock %}
+{% block aside %}
+<aside class="sidebar">
+<div class="posts">
+<div class="title-bar">{{ apos.singleton(data.global, 'postWidgetTitle', 'apostrophe-rich-text', {
+	toolbar: [ 'Styles', 'Bold', 'Italic' ],
+	styles: [
+		{ name: 'H3', element: 'h3' }
+	]}) }}</div>
+{{ apos.singleton(data.global, 'postWidget', 'apostrophe-blog' ) }}
+</div>
+
+<div class="quotes">
+<div class="title-bar">{{ apos.singleton(data.global, 'quoteWidgetTitle', 'apostrophe-rich-text', {
+	toolbar: [ 'Styles', 'Bold', 'Italic' ],
+	styles: [
+		{ name: 'H3', element: 'h3' }
+	]}) }}</div>
+{{ apos.singleton(data.global, 'quoteWidget', 'apostrophe-blog' ) }}
+</div>
+</aside>
+{% endblock %}
+{% block pagination %}
+{% import 'apostrophe-pager:macros.html' as pager with context %}
+{{ pager.render({ page: data.currentPage, total: data.totalPages }, data.url) }}
+{% endblock %}

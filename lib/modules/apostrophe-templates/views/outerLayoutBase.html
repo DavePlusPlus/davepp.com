@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{% block locale %}en{% endblock %}"{% block extraHtml %}{% endblock %}>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+{% block startHead %}{% endblock %}
+<meta charset="UTF-8" />
+<title>{% block title %}{% endblock %}</title>
+{{ apos.assets.stylesheets(data.when) }}
+{% block standardHead %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />{% endblock %}
+{% block extraHead %}{% endblock %}
+</head>
+<body class="{{ data.aposBodyClasses }}{% block bodyClass %}{% endblock %}"{{ data.aposBodyDataAttributes | safe }}>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '988279464677942',
+	  autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.1'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="load-bar"></div>
+{% block apostropheMenu %}
+{{ apos.adminBar.output() }}{% endblock %}
+{% block apostropheContextMenu %}
+{% if data.user %}
+<div class="apos-ui">
+<div class="apos-context-menu-container">
+{{ apos.pages.menu({ contextMenu: data.contextMenu, page: data.page, bottom: true })}}
+{{ apos.pages.publishMenu({ publishMenu: data.publishMenu, page: data.page, piece: data.piece, bottom: true }) }}
+{{ apos.pages.afterContextMenu() }}
+</div>
+</div>{% endif %}{% endblock %}
+<header>
+{% block header %}{% endblock %}
+</header>
+<main>
+<article data-apos-refreshable class="{% block articleClass %}{% endblock %}">
+{% block main %}{% endblock %}
+</article>
+{% block aside %}{% endblock %}
+{% block pagination %}{% endblock %}
+</main>
+{% block section %}{% endblock %}
+<p id="back-to-top" title="Go to top">&uarr;</p>
+<footer>
+{% block footer %}{% endblock %}
+</footer>
+{{ apos.assets.scripts(data.when) }}
+{% block jsCalls %}
+<script>
+{{ data.js.globalCalls }}
+{{ data.js.reqCalls }}
+</script>{% endblock %}
+{% block extraBody %}{% endblock %}
+</body>
+</html>

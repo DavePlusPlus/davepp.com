@@ -1,0 +1,21 @@
+{% for piece in data.widget._pieces %}
+{% if data.widget.full %}
+<div class="{{ data.widget.class }}-widget">
+{{ apos.singleton(piece, 'blog') }}
+{% if data.widget.class == "quote" %}
+<ul class="tags">
+<li>#</li>
+{% for tag in piece.tags %}
+<li><a href="{{ data.home._url + "q" | build({ tags: tag }) }}">{{tag}}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+<h5 class="title">{% if piece._url %}<a href="{{ piece._url }}">{% endif %}{{ piece.title }}{% if piece._url %}</a>{% endif %}</h5>
+</div>
+{% else %}
+{% if piece._url %}<a class="preview" href="{{ piece._url }}">
+<h5 class="title">{{ piece.title }}</h5>
+{% if piece.publishedAt | length %}<time datetime="{{ piece.publishedAt }}" class="date">{{ piece.publishedAt | date('MMMM Do, YYYY') }}</time>{% endif %}
+</a>{% endif %}
+{% endif %}
+{% endfor %}

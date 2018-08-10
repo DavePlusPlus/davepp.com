@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block bodyClass %}home{% endblock %}
+{% block articleClass %}frontpage{% endblock %}
+{% block main %}
+<div class="content">
+{{ apos.area(data.page, 'home', {
+	widgets: {
+		'two-column': {},
+		'separator': {},
+		'apostrophe-blog': {},
+		'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'Heading', element: 'h3' },
+            { name: 'Subheading', element: 'h4' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+	}
+}) }}
+</div>
+{% endblock %}
+{% block aside %}
+<aside class="sidebar">
+<div class="posts">
+<div class="title-bar">{{ apos.singleton(data.global, 'postWidgetTitle', 'apostrophe-rich-text', {
+	toolbar: [ 'Styles', 'Bold', 'Italic' ],
+	styles: [
+		{ name: 'H3', element: 'h3' }
+	]}) }}</div>
+{{ apos.singleton(data.global, 'postWidget', 'apostrophe-blog' ) }}
+</div>
+
+<div class="quotes">
+<div class="title-bar">{{ apos.singleton(data.global, 'quoteWidgetTitle', 'apostrophe-rich-text', {
+	toolbar: [ 'Styles', 'Bold', 'Italic' ],
+	styles: [
+		{ name: 'H3', element: 'h3' }
+	]}) }}</div>
+{{ apos.singleton(data.global, 'quoteWidget', 'apostrophe-blog' ) }}
+</div>
+</aside>
+{% endblock %}

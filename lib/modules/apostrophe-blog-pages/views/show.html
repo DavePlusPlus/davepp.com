@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block bodyClass %}blog{% endblock %}
+{% block articleClass %}{% for tag in data.piece.tags %}{% if tag == "post" or tag == "quote" or tag == "dark" %}{{tag}} {% endif %}{% endfor %}{% endblock %}
+{% block main %}
+<div class="meta">
+<h1 class="title">{{ data.piece.title }}</h1>
+<time datetime="{{ data.piece.publishedAt }}" class="date">{{ data.piece.publishedAt | date('MMMM Do, YYYY') }}</time>
+</div>
+<div class="content fb-quotable">
+{{ apos.area(data.piece, 'blog', {
+      widgets: {
+		'two-column': {},
+		'separator': {},
+        'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'Heading', element: 'h3' },
+            { name: 'Subheading', element: 'h4' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+      }
+}) }}
+<ul class="tags">
+<li>#</li>
+{% for tag in data.piece.tags %}
+<li><a href="{{ data.page._url | build({ tags: tag }) }}">{{tag}}</a></li>
+{% endfor %}
+</ul>
+</div>
+<nav class="navigation">
+{% if data.next %}<a class="previous" href="{{ data.next._url }}">Previous: {{ data.next.title }}</a>{% endif %}
+{% if data.previous %}<a class="next" href="{{ data.previous._url }}">Next: {{ data.previous.title }}</a>{% endif %}
+</nav>
+{% endblock %}
+{% block section %}
+<section>
+<div class="buttons">
+<div class="fb-quote"></div>
+<div class="fb-save" data-uri="{{ data.piece._url }}"></div>
+<div class="fb-like" data-share="true" data-show-faces="true" data-colorscheme="dark" data-href="{{ data.piece._url }}" data-layout="button_count" data-action="like" data-size="large"></div>
+</div>
+<div class="fb-comments" data-href="{{ data.piece._url }}" data-numposts="10" data-width="100%"></div>
+</section>
+{% endblock %}
