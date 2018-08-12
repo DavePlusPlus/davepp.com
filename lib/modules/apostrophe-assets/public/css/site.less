@@ -21,7 +21,7 @@ html {
 		color: #242424;
 		background-color: #f6f6f6;
 		h1, h2, h3, h4, h5, h6 {
-			line-height: 1.1;
+			line-height: normal;
 			font-family: "Roboto", sans-serif;
 			font-weight: 300;
 		}
@@ -62,12 +62,24 @@ html {
 			font-style: italic;
 		}
 		hr.separator {
-			width: 75%;
+			width: 4em;
 		}
-		blockquote p:before, blockquote h3:before, blockquote h4:before {
+		blockquote p:before,
+		blockquote h1:before,
+		blockquote h2:before,
+		blockquote h3:before,
+		blockquote h4:before,
+		blockquote h5:before,
+		blockquote h6:before {
 			content: "\201C";
 		}
-		blockquote p:after, blockquote h3:after, blockquote h4:after {
+		blockquote p:after,
+		blockquote h1:after,
+		blockquote h2:after,
+		blockquote h3:after,
+		blockquote h4:after,
+		blockquote h5:after,
+		blockquote h6:after {
 			content: "\201D";
 		}
 		div.load-bar {
@@ -103,7 +115,19 @@ html {
 			opacity: 0.5;
 			visibility: visible;
 		}
-		header, main, section, footer {
+		figure {
+			justify-content: center;
+			align-items: center;
+			figcaption.image-description {
+				color: white;
+				position: absolute;
+				max-width: 66%;
+				font-size: calc(0.5em + 1.6vw);
+				font-family: "Roboto", sans-serif;
+				font-weight: 100;
+			}
+		}
+		header, main, section.comments, footer {
 			padding-left: 2em;
 			padding-right: 2em;
 			box-shadow: 0 0 14px 0 hsla(0,0%,86%,0.7);
@@ -111,18 +135,6 @@ html {
 				font-family: "Raleway", sans-serif;
 				color: #b0b0b0;
 				font-size: 0.9em;
-			}
-			figure {
-				justify-content: center;
-				align-items: center;
-				figcaption.image-description {
-					color: white;
-					position: absolute;
-					max-width: 66%;
-					font-size: calc(0.5em + 1.6vw);
-					font-family: "Roboto", sans-serif;
-					font-weight: 100;
-				}
 			}
 		}
 		header {
@@ -255,6 +267,16 @@ html {
 				}
 			}
 		}
+		section.showcase {
+				display: block;
+				width: 100%;
+				figure {
+					figcaption.image-description {
+						font-size: calc(1em + 2vw);
+					}
+				}
+				div.apos-area-widget-wrapper {}
+			}
 		main {
 			line-height: 1.6;
 			margin: 1.5em auto;
@@ -266,6 +288,70 @@ html {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
+			section.main-caption {
+				display: block;
+				width: 100%;
+				div.apos-area-widget-wrapper {
+					margin-bottom: 2em;
+				}
+				div.apos-rich-text {
+					text-align: center;
+				}
+			}
+			div.quote-widget {
+				max-width: 80%;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				margin: 0 auto 0 auto;
+				border-left: 0.5em solid #ddd;
+				padding-left: 1.5em;
+				div:first-child {
+					flex: 0 1 100%;
+					margin-bottom: 0.5em;
+				}
+				ul.tags {
+						display: inline-block;
+						margin-top: 0;
+						margin-bottom: 0;
+						flex: 1 0 50%;
+						li {
+							display: inline-block;
+							margin-right: 0.5em;
+							font-size: 0.9em;
+							color: #b0b0b0;
+							font-family: "Libre Baskerville", Georgia, serif;
+							font-style: italic;
+							a:link, a:visited {
+								color: #b0b0b0;
+							}
+							a:hover {
+								color: @globalColor;
+							}
+							a:active {
+								color: @activeColor;
+							}
+						}
+					}
+				p {
+					font-family: "Libre Baskerville", Georgia, serif;
+					font-size: 1.4em;
+					color: black;
+					line-height: 1.4;
+				}
+				p:first-child:before {
+					content: "\201C";
+				}
+				p:last-child:after {
+					content: "\201D";
+				}
+				h5.title {
+					display: inline-block;
+					margin-top: 0;
+					flex: 1 0 50%;
+					text-align: right;
+				}
+			}
 			article {
 				font-size: 1em;
 				width: 100%;
@@ -275,12 +361,10 @@ html {
 				div.meta {
 					margin-bottom: 2em;
 					h1.title {
-						color: black;
 						display: inline-block;
 						line-height: 1;
 					}
 					h2.title {
-						color: black;
 						margin-bottom: 0.5em;
 						display: inline-block;
 					}
@@ -331,45 +415,15 @@ html {
 						}
 					}
 					div.quote-widget {
-						max-width: 90%;
-						display: flex;
-						flex-direction: row;
-						flex-wrap: wrap;
-						margin: 0 auto 0 auto;
-						border-left: 0.5em solid #ddd;
-						padding-left: 1.5em;
-						div:first-child {
-							flex: 0 1 100%;
-							margin-bottom: 0.5em;
-						}
 						ul.tags {
+							display: inline-block;
 							margin-top: 0;
 							margin-bottom: 0;
-							display: inline-block;
-							flex: 1 0 50%;
-						}
-						p {
-							font-family: "Libre Baskerville", Georgia, serif;
-							font-size: 2.2em;
-							color: black;
-						}
-						p:first-child:before {
-							content: "\201C";
-						}
-						p:last-child:after {
-							content: "\201D";
-						}
-						h5.title {
-							display: inline-block;
-							margin-top: 0;
-							flex: 1 0 50%;
-							text-align: right;
 						}
 					}
 					ul.tags {
 						display: block;
-						margin-top: 2em;
-						margin-bottom: 0.5em;
+						margin-top: 4em;
 						li {
 							display: inline-block;
 							margin-right: 0.5em;
@@ -448,7 +502,9 @@ html {
 				}
 			}
 			article.post {
-				div.meta {}
+				div.meta {
+					margin-bottom: 3em;
+				}
 				div.content {
 					margin-bottom: 2em;
 				}
@@ -459,6 +515,9 @@ html {
 					margin: 0 auto 3em auto;
 					border-left: 0.5em solid #ddd;
 					padding-left: 1.5em;
+					ul.tags {
+						margin-top: 2em;
+					}
 					p {
 						font-family: "Libre Baskerville", Georgia, serif;
 						font-size: 2.2em;
@@ -499,7 +558,6 @@ html {
 				flex: 1 0 25%;
 				h3 {
 					margin: 0 0 0.5em 0.15em;
-					color: black;
 				}
 				a.preview {
 					display: block;
@@ -529,7 +587,7 @@ html {
 				font-family: "Roboto", sans-serif;
 			}
 		}
-		section {
+		section.comments {
 			margin: 1.5em auto;
 			padding-top: 2em;
 			padding-bottom: 2em;
@@ -578,14 +636,14 @@ html {
 				bottom: 25px;
 				right: 25px;
 			}
-			header, main, section, footer {
+			figure {
+				figcaption.image-description {
+					max-width: 96%;
+				}
+			}
+			header, main, section.comments, footer {
 				padding-left: 1em;
 				padding-right: 1em;
-				figure {
-					figcaption.image-description {
-						max-width: 96%;
-					}
-				}
 			}
 			header {
 				div.three-column-header {
@@ -597,13 +655,20 @@ html {
 						text-align: right;
 					}
 					nav.main-menu {
-						margin-top: 0.3em;
+						margin-top: 0.5em;
 						text-align: center;
 					}
 				}
 			}
 			main {
 				display: block;
+				div.quote-widget {
+						border-left: 0;
+						padding-left: 0;
+						p {
+							text-align: center;
+						}
+				}
 				article {
 					div.content {
 						div.quote-widget {
@@ -612,7 +677,7 @@ html {
 								p {
 									text-align: center;
 								}
-							}
+						}
 						div.two-column {
 							display: block;
 							div.column-left {
@@ -662,13 +727,12 @@ html {
 			}
 		}
 		@media only screen and (min-width: 1540px) {
-			header, main, section, footer {
-				figure {
-					figcaption.image-description {
-						font-size: 1.9em;
-					}
+			figure {
+				figcaption.image-description {
+					font-size: 1.9em;
 				}
 			}
+			header, main, section.comments, footer {}
 		}
 	}
 }

@@ -1,5 +1,57 @@
 {% extends "layout.html" %}
 {% block bodyClass %}blog{% endblock %}
+{% block showcase %}
+<section class="showcase">
+{{ apos.area(data.piece, 'showcase', {
+	widgets: {
+		'two-column': {},
+		'separator': {},
+		'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+	}
+}) }}
+</section>
+{% endblock %}
+{% block mainCaption %}
+<section class="main-caption">
+{{ apos.area(data.piece, 'caption', {
+	widgets: {
+		'two-column': {},
+		'separator': {},
+		'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+	}
+}) }}
+</section>
+{% endblock %}
 {% block articleClass %}{% for tag in data.piece.tags %}{% if tag == "post" or tag == "quote" or tag == "dark" %}{{tag}} {% endif %}{% endfor %}{% endblock %}
 {% block main %}
 <div class="meta">
@@ -17,8 +69,12 @@
         'apostrophe-rich-text': {
           toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
           styles: [
-            { name: 'Heading', element: 'h3' },
-            { name: 'Subheading', element: 'h4' },
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
             { name: 'Paragraph', element: 'p' }
           ]
         },
@@ -37,8 +93,8 @@
 {% if data.previous %}<a class="next" href="{{ data.previous._url }}">Next: {{ data.previous.title }}</a>{% endif %}
 </nav>
 {% endblock %}
-{% block section %}
-<section>
+{% block bottom %}
+<section class ="comments">
 <div class="buttons">
 <div class="fb-quote"></div>
 <div class="fb-save" data-uri="{{ data.piece._url }}"></div>

@@ -1,5 +1,59 @@
 {% extends "layout.html" %}
 {% block bodyClass %}home{% endblock %}
+{% block showcase %}
+<section class="showcase">
+{{ apos.area(data.page, 'showcase', {
+	widgets: {
+		'two-column': {},
+		'separator': {},
+		'apostrophe-blog': {},
+		'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+	}
+}) }}
+</section>
+{% endblock %}
+{% block mainCaption %}
+<section class="main-caption">
+{{ apos.area(data.page, 'caption', {
+	widgets: {
+		'two-column': {},
+		'separator': {},
+		'apostrophe-blog': {},
+		'apostrophe-images': {
+          size: 'full'
+        },
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+          styles: [
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
+            { name: 'Paragraph', element: 'p' }
+          ]
+        },
+		'apostrophe-video': {}
+	}
+}) }}
+</section>
+{% endblock %}
 {% block articleClass %}frontpage{% endblock %}
 {% block main %}
 <div class="content">
@@ -14,8 +68,12 @@
         'apostrophe-rich-text': {
           toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
           styles: [
-            { name: 'Heading', element: 'h3' },
-            { name: 'Subheading', element: 'h4' },
+            { name: 'H1', element: 'h1' },
+            { name: 'H2', element: 'h2' },
+			{ name: 'H3', element: 'h3' },
+            { name: 'H4', element: 'h4' },
+			{ name: 'H5', element: 'h5' },
+            { name: 'H6', element: 'h6' },
             { name: 'Paragraph', element: 'p' }
           ]
         },

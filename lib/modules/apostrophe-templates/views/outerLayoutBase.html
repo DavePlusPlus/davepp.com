@@ -44,14 +44,16 @@
 <header>
 {% block header %}{% endblock %}
 </header>
+{% block showcase %}{% endblock %}
 <main>
+{% block mainCaption %}{% endblock %}
 <article data-apos-refreshable class="{% block articleClass %}{% endblock %}">
 {% block main %}{% endblock %}
 </article>
 {% block aside %}{% endblock %}
 {% block pagination %}{% endblock %}
 </main>
-{% block section %}{% endblock %}
+{% block bottom %}{% endblock %}
 <p id="back-to-top" title="Go to top">&uarr;</p>
 <footer>
 {% block footer %}{% endblock %}
