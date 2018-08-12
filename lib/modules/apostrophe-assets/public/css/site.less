@@ -306,6 +306,16 @@ html {
 				margin: 0 auto 0 auto;
 				border-left: 0.5em solid #ddd;
 				padding-left: 1.5em;
+				&:before {
+					content: "\201C";
+					display: flex;
+					margin-right: auto;
+					margin-left: -1em;
+					font-size: 6em;
+					line-height: 1;
+					font-family: "Libre Baskerville",Georgia,serif;
+					color: #ddd;
+				}
 				div:first-child {
 					flex: 0 1 100%;
 					margin-bottom: 0.5em;
@@ -338,9 +348,6 @@ html {
 					font-size: 1.4em;
 					color: black;
 					line-height: 1.4;
-				}
-				p:first-child:before {
-					content: "\201C";
 				}
 				p:last-child:after {
 					content: "\201D";
@@ -515,6 +522,22 @@ html {
 					margin: 0 auto 3em auto;
 					border-left: 0.5em solid #ddd;
 					padding-left: 1.5em;
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					&:before {
+						content: "\201C";
+						display: flex;
+						margin-right: auto;
+						margin-left: -1em;
+						font-size: 6em;
+						line-height: 1;
+						font-family: "Libre Baskerville",Georgia,serif;
+						color: #ddd;
+					}
+					div:first-child {
+						flex: 0 1 100%;
+					}
 					ul.tags {
 						margin-top: 2em;
 					}
@@ -523,9 +546,6 @@ html {
 						font-size: 2.2em;
 						color: black;
 						line-height: 1.4;
-					}
-					p:first-child:before {
-						content: "\201C";
 					}
 					p:last-child:after {
 						content: "\201D";
@@ -542,6 +562,9 @@ html {
 				}
 				div.content {
 					border-left: 0.5em solid #666;
+					&:before {
+						color: #666;
+					}
 					p {
 						color: white;
 					}
@@ -665,8 +688,14 @@ html {
 				div.quote-widget {
 						border-left: 0;
 						padding-left: 0;
+						&:before {
+							content: none;
+						}
 						p {
 							text-align: center;
+							&:first-child:before {
+								content: "\201C";
+							}
 						}
 				}
 				article {
@@ -674,8 +703,14 @@ html {
 						div.quote-widget {
 								border-left: 0;
 								padding-left: 0;
+								&:before {
+									content: none;
+								}
 								p {
 									text-align: center;
+									&:first-child:before {
+										content: "\201C";
+									}
 								}
 						}
 						div.two-column {
@@ -700,8 +735,14 @@ html {
 					div.content {
 						border-left: 0;
 						padding-left: 0;
+						&:before {
+							content: none;
+						}
 						p {
 							text-align: center;
+							&:first-child:before {
+								content: "\201C";
+							}
 						}
 					}
 				}
