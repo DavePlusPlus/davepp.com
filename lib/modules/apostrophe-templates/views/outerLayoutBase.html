@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />{% endblock %}
 {% block extraHead %}{% endblock %}
 </head>
-<body class="{{ data.aposBodyClasses }}{% block bodyClass %}{% endblock %}"{{ data.aposBodyDataAttributes | safe }}>
+<body class="{{ data.aposBodyClasses }}{% block bodyClass %}{% endblock %}"{{ data.aposBodyDataAttributes | safe }} data-apos-refreshable>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -47,7 +47,7 @@
 {% block showcase %}{% endblock %}
 <main>
 {% block mainCaption %}{% endblock %}
-<article data-apos-refreshable class="{% block articleClass %}{% endblock %}">
+<article class="{% block articleClass %}{% endblock %}">
 {% block main %}{% endblock %}
 </article>
 {% block aside %}{% endblock %}
