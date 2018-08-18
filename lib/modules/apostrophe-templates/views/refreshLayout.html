@@ -1,8 +1,17 @@
-{% block beforeMain %}{% endblock %}
+{% block header %}{% endblock %}
+{% block showcase %}{% endblock %}
+<main>
+{% block mainCaption %}{% endblock %}
+<article class="{% block articleClass %}{% endblock %}">
+{{ apos.templates.prepended('main') }}
 {% block main %}{% endblock %}
-{% block afterMain %}{% endblock %}
+{{ apos.templates.appended('main') }}
+</article>
+{% block aside %}{% endblock %}
+{% block pagination %}{% endblock %}
+</main>
+{% block bottom %}{% endblock %}
+{% block footer %}{% endblock %}
 <script>
-  {# globalCalls already will have happened at initial page load, but we should #}
-  {# make the request-specific calls #}
-  {{ data.js.reqCalls }}
+{{ data.js.reqCalls }}
 </script>

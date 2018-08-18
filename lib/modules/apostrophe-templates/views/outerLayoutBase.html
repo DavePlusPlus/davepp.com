@@ -2,14 +2,64 @@
 <html lang="{% block locale %}en{% endblock %}"{% block extraHtml %}{% endblock %}>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 {% block startHead %}{% endblock %}
+{{ apos.templates.prepended('head') }}
 <meta charset="UTF-8" />
 <title>{% block title %}{% endblock %}</title>
 {{ apos.assets.stylesheets(data.when) }}
 {% block standardHead %}
-<meta name="viewport" content="width=device-width, initial-scale=1" />{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="{{ data.page.metaDescription | truncate(300, true, "..") | safe }}" />
+<meta name="tags" content="{{ data.page.metaTags }}" />
+<meta property="fb:app_id" content="988279464677942" />
+{% include "apostrophe-open-graph:view.html" %}
+<meta property="article:author" content="https://www.facebook.com/Dave.Hrrr" />
+<meta property="article:publisher" content="https://www.facebook.com/daveppofficial" />
+{% endblock %}
+{{ apos.templates.appended('head') }}
 {% block extraHead %}{% endblock %}
 </head>
-<body class="{{ data.aposBodyClasses }}{% block bodyClass %}{% endblock %}"{{ data.aposBodyDataAttributes | safe }} data-apos-refreshable>
+<body class="{{ data.aposBodyClasses }}{% block bodyClass %}{% endblock %}"{{ data.aposBodyDataAttributes | safe }}>
+{{ apos.templates.prepended('body') }}
+{% block apostropheMenu %}
+{{ apos.adminBar.output() }}
+{% endblock %}
+{% block apostropheContextMenu %}
+{% if data.user %}
+<div class="apos-ui">
+<div class="apos-context-menu-container">
+{{ apos.templates.prepended('contextMenu') }}
+{{ apos.pages.menu({ contextMenu: data.contextMenu, page: data.page, bottom: true })}}
+{{ apos.pages.publishMenu({ publishMenu: data.publishMenu, page: data.page, piece: data.piece, bottom: true }) }}
+{{ apos.templates.appended('contextMenu') }}
+</div>
+</div>
+{% endif %}
+{% endblock %}
+<div class="load-bar"></div>
+<div class="dynamic" data-apos-refreshable>
+{% block header %}{% endblock %}
+{% block showcase %}{% endblock %}
+<main>
+{% block mainCaption %}{% endblock %}
+<article class="{% block articleClass %}{% endblock %}">
+{{ apos.templates.prepended('main') }}
+{% block main %}{% endblock %}
+{{ apos.templates.appended('main') }}
+</article>
+{% block aside %}{% endblock %}
+{% block pagination %}{% endblock %}
+</main>
+{% block bottom %}{% endblock %}
+{% block footer %}{% endblock %}
+</div>
+<p id="back-to-top" title="Go to top">&uarr;</p>
+{{ apos.assets.scripts(data.when) }}
+{% block jsCalls %}
+<script>
+{{ data.js.globalCalls }}
+{{ data.js.reqCalls }}
+</script>
+{% endblock %}
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -29,41 +79,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="load-bar"></div>
-{% block apostropheMenu %}
-{{ apos.adminBar.output() }}{% endblock %}
-{% block apostropheContextMenu %}
-{% if data.user %}
-<div class="apos-ui">
-<div class="apos-context-menu-container">
-{{ apos.pages.menu({ contextMenu: data.contextMenu, page: data.page, bottom: true })}}
-{{ apos.pages.publishMenu({ publishMenu: data.publishMenu, page: data.page, piece: data.piece, bottom: true }) }}
-{{ apos.pages.afterContextMenu() }}
-</div>
-</div>{% endif %}{% endblock %}
-<header>
-{% block header %}{% endblock %}
-</header>
-{% block showcase %}{% endblock %}
-<main>
-{% block mainCaption %}{% endblock %}
-<article class="{% block articleClass %}{% endblock %}">
-{% block main %}{% endblock %}
-</article>
-{% block aside %}{% endblock %}
-{% block pagination %}{% endblock %}
-</main>
-{% block bottom %}{% endblock %}
-<p id="back-to-top" title="Go to top">&uarr;</p>
-<footer>
-{% block footer %}{% endblock %}
-</footer>
-{{ apos.assets.scripts(data.when) }}
-{% block jsCalls %}
-<script>
-{{ data.js.globalCalls }}
-{{ data.js.reqCalls }}
-</script>{% endblock %}
+{{ apos.templates.appended('body') }}
 {% block extraBody %}{% endblock %}
 </body>
 </html>
