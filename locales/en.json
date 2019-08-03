@@ -214,5 +214,13 @@
 	"Showing %s - %s of %s results at least %sx%s pixels in size.": "Showing %s - %s of %s results at least %sx%s pixels in size.",
 	"Some uploaded files were unsuitable for the current placement.": "Some uploaded files were unsuitable for the current placement.",
 	"Some files were damaged, of an unsuitable type or too large to be uploaded.": "Some files were damaged, of an unsuitable type or too large to be uploaded.",
-	"Control of this document has been taken by another user, tab or window.": "Control of this document has been taken by another user, tab or window."
+	"Control of this document has been taken by another user, tab or window.": "Control of this document has been taken by another user, tab or window.",
+	"No changes to display.": "No changes to display.",
+	"Current": "Current",
+	"Meta Title": "Meta Title",
+	"An error occurred.": "An error occurred.",
+	"test": "test",
+	"A number between 0.1 and 1.0. 1.0 is highest priority. Not all types of content appear in sitemaps.": "A number between 0.1 and 1.0. 1.0 is highest priority. Not all types of content appear in sitemaps.",
+	"Batch Permissions": "Batch Permissions",
+	"Rescue": "Rescue"
 }

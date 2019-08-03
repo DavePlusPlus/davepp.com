@@ -1,23 +1,15 @@
 {% extends data.outerLayout %}
-{% block title %}
-{% if data.piece %}{{ data.piece.title }}
-{% elseif data.page %}{{ data.page.title }}
-{% else %}{{ apos.log('You forgot to override the title block.') }}{% endif %} | {{data.global.appName}}{% endblock %}
-{% block extraHead %}
-<meta name="description" content="{{ data.page.metaDescription | truncate(300, true, "..") | safe }}" />
-<meta name="tags" content="{{ data.page.metaTags }}" />
-<meta property="fb:app_id" content="988279464677942" />
-{% include "apostrophe-open-graph:view.html" %}
-<meta property="article:author" content="https://www.facebook.com/Dave.Hrrr" />
-<meta property="article:publisher" content="https://www.facebook.com/daveppofficial" />
-{% endblock %}
+{% block title %}{% if data.piece %}{{ data.piece.title }}
+{% elseif data.page %}{% if data.page.metaTitle %}{{ data.page.metaTitle }}{% else %}{{ data.page.title }}{% endif %}
+{% else %}{{ apos.log('You forgot to override the title block.') }}{% endif %}{% endblock %}
 {% block header %}
+<header>
 <div class="three-column-header">
 <div class="logo">
 <a href="{{ data.home._url }}">{{data.global.appName}}</a>
 </div>
-<form class="search" method="GET" action="/search">
-<input class="searchBox" type="search" value="{{ data.query.q | e }}" name="q" placeholder="words, tags..." autocomplete="off" />
+<form data-apos-search-page-form class="search" method="GET" action="/search">
+<input data-apos-search-field class="searchBox" type="search" value="{{ data.query.q | e }}" name="q" placeholder="words, tags..." autocomplete="off" />
 <input class="searchButton" type="submit" value="Search" />
 </form>
 {% block mainMenu %}
@@ -43,6 +35,7 @@
 <li class="breadcrumb"><p>{{ data.page.title }}</p></li>{% endif %}
 </ul>
 {% endif %}
+</header>
 {% endblock %}
 {% block showcase %}{% endblock %}
 {% block mainCaption %}{% endblock %}
@@ -52,6 +45,7 @@
 {% block pagination %}{% endblock %}
 {% block bottom %}{% endblock %}
 {% block footer %}
+<footer>
 {{ apos.area(data.global, 'footer', {
       widgets: {
         'two-column': {},
@@ -70,4 +64,5 @@
 		'apostrophe-video': {}
       }
 }) }}
+</footer>
 {% endblock %}

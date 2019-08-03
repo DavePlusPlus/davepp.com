@@ -1,3 +1,4 @@
+
 var path = require('path');
 
 var apos = require('apostrophe')({
@@ -16,7 +17,6 @@ var apos = require('apostrophe')({
 
     // Note: most configuration occurs in the respective
     // modules' directories. See lib/apostrophe-assets/index.js for an example.
-    
     // However any modules that are not present by default in Apostrophe must at
     // least have a minimal configuration here: `moduleName: {}`
 
@@ -52,20 +52,12 @@ var apos = require('apostrophe')({
 		restApi: {
 			maxPerPage: 10,
 			safeFilters: [ 'slug' ]
-		},
-		park: [
-        {
-          title: 'Search',
-          slug: '/search',
-          type: 'apostrophe-search',
-          label: 'Search',
-          published: true
-        }
-      ]
+		}
 	},
 	'apostrophe-templates': { viewsFolderFallback: path.join(__dirname, 'views') },
 	'apostrophe-search': {
-		 filters: [
+		suggestions: true,
+		filters: [
 			{
 			  name: 'apostrophe-blog',
 			  label: 'Articles'
@@ -78,6 +70,12 @@ var apos = require('apostrophe')({
 		excludeTypes: []
     },
 	'apostrophe-open-graph': {},
-	'apostrophe-headless': {}
+	'apostrophe-headless': {},
+	'apostrophe-login': { localLogin: false },
+	'apostrophe-workflow': {
+  		alias: 'workflow'
+	},
+	'apostrophe-workflow-modified-documents': {},
+	'console-login': {}
   }
 });

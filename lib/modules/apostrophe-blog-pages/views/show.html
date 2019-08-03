@@ -89,8 +89,8 @@
 </ul>
 </div>
 <nav class="navigation">
-{% if data.next %}<a class="previous" href="{{ data.next._url }}">Previous: {{ data.next.title }}</a>{% endif %}
-{% if data.previous %}<a class="next" href="{{ data.previous._url }}">Next: {{ data.previous.title }}</a>{% endif %}
+{% if data.next %}<a id="previous" href="{{ data.next._url }}">Previous: {{ data.next.title }}</a>{% endif %}
+{% if data.previous %}<a id="next" href="{{ data.previous._url }}">Next: {{ data.previous.title }}</a>{% endif %}
 </nav>
 {% endblock %}
 {% block bottom %}

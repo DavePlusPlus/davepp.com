@@ -13,14 +13,21 @@
   "author": "P'unk Avenue",
   "license": "MIT",
   "dependencies": {
-    "apostrophe": "^2.62.0",
-    "apostrophe-blog": "^2.1.2",
-    "apostrophe-headless": "^2.3.0",
+    "apostrophe": "^2.93.0",
+    "apostrophe-blog": "^2.2.1",
+    "apostrophe-headless": "^2.9.1",
     "apostrophe-open-graph": "^1.1.4",
-    "apostrophe-site-map": "^2.4.4"
+    "apostrophe-site-map": "^2.5.1",
+    "apostrophe-workflow": "^2.22.0",
+    "clean-css": "^4.2.1",
+    "nunjucks": "^3.2.0"
   },
   "nodemonConfig": {
     "verbose": true,
+    "watch": [
+      "app.js",
+      "lib/modules"
+    ],
     "ignore": [
       "locales/*.json",
       "public/modules/**/*.less",

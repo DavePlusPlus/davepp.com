@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block bodyClass %}page{% endblock %}
 {% block articleClass %}search{% endblock %}
-{% block title %}{{ data.page.title }}{% endblock %}
 {% block main %}
 <div class="content">
   <form data-apos-search-page-form class="search" method="GET" action="{{ data.url | e }}">

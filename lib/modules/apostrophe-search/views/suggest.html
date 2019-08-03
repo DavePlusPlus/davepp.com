@@ -1,0 +1,8 @@
+{% if data.docs.length %}
+<h3 class="title">Try one of these suggestions:</h3>
+{% for doc in data.docs %}
+{% if doc._url %}<a class="preview" href="{{ doc._url }}">
+<h5 class="title">{{ doc.title }}</h5>
+</a>{% endif %}
+{% endfor %}
+{% endif %}

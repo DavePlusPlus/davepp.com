@@ -155,15 +155,19 @@ html {
 						font-size: 2.6em;
 						text-shadow: 1px 1px 10px white;
 						transition: color .1s;
-					}
-					a:link, a:visited {
-						color: black;
-					}
-					a:hover {
-						color: @globalColor;
-					}
-					a:active {
-						color: @activeColor;
+						&:link, &:visited {
+							color: black;
+						}
+						&:hover {
+							color: @globalColor;
+						}
+						&:active {
+							color: @activeColor;
+						}
+						&:after {
+							content: "PP";
+							color: #ddd;
+						}
 					}
 				}
 				form.search {
@@ -497,11 +501,11 @@ html {
 					flex-wrap: wrap;
 					font-family: "Roboto", sans-serif;
 					font-size: 1.1em;
-					a.previous {
+					a#previous {
 						display: inline-block;
 						flex: 1 0 50%;
 					}
-					a.next {
+					a#next {
 						display: inline-block;
 						flex: 1 0 50%;
 						text-align: right;
